@@ -92,13 +92,15 @@ public class ShellCommand {
     }
 
 
-    protected void statistics(){
+    protected String statistics(){
+        StringBuilder stringBuilder = new StringBuilder();
         shellProgram.setStatStatisticsSucces(shellProgram.getStatPromptSucces()+1);
-        console.print("cd:"+shellProgram.getStatCdSuccess()+":"+shellProgram.getStatCdFail());
-        console.print("tree:"+shellProgram.getStatTreeSuccess()+":"+shellProgram.getStatTreeFail());
-        console.print("dir:"+shellProgram.getStatDirSucces()+":"+shellProgram.getStatDirFail());
-        console.print("prompt:"+shellProgram.getStatPromptSucces()+":"+shellProgram.getStatPromptFail());
-        console.print("statistics:"+shellProgram.getStatStatisticsSucces()+":"+shellProgram.getStatStatisticsFail());
+        stringBuilder.append("cd:"+shellProgram.getStatCdSuccess()+":"+shellProgram.getStatCdFail()+ "\n");
+        stringBuilder.append("tree:"+shellProgram.getStatTreeSuccess()+":"+shellProgram.getStatTreeFail()+ "\n");
+        stringBuilder.append("dir:"+shellProgram.getStatDirSucces()+":"+shellProgram.getStatDirFail()+ "\n");
+        stringBuilder.append("prompt:"+shellProgram.getStatPromptSucces()+":"+shellProgram.getStatPromptFail()+ "\n");
+        stringBuilder.append("statistics:"+shellProgram.getStatStatisticsSucces()+":"+shellProgram.getStatStatisticsFail()+ "\n");
+        return stringBuilder.toString();
     }
 
 

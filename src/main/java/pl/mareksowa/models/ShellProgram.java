@@ -62,7 +62,7 @@ public class ShellProgram {
                     }
 
                     case "statistics": {
-                        command.statistics();
+                        console.print(command.statistics());
                         break;
                     }
 
