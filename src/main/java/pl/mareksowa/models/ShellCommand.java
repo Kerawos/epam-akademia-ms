@@ -41,6 +41,17 @@ public class ShellCommand {
             }
         }
     }
+    protected void prompt(String input){
+        if (input.substring(7, input.length()).equals("reset")){
+            shellProgram.promptReset();
+        } else if(input.substring(7, input.length()).equals("$cwd")){
+            //change boolean -> update prompt
+            shellProgram.setIsPromptDirectory(true);
+        } else {
+            shellProgram.setPrompt(input.substring(7, input.length()));
+        }
+    }
+
 
     protected void exit(){
         console.print("Bye");
@@ -50,6 +61,5 @@ public class ShellCommand {
     protected void unknown(){
         console.print("unknown command...");
     }
-
 
 }

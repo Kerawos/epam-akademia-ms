@@ -15,9 +15,8 @@ public class ShellProgram {
     private ShellCommand command;
     private String input;
     private List<String> listOfDir;
+    private static String prompt;
     private static boolean isPromptDirectory;
-
-
 
     private static String directory;
     private static File currentDirectory;
@@ -33,40 +32,38 @@ public class ShellProgram {
         command = new ShellCommand();
         setDirectory(System.getProperty("user.dir"));
         setCurrentDirectory(new File(getDirectory()));
+        setPrompt("$");
+        setIsPromptDirectory(false);
 
         //main loop
-        while (true){
-            console.print("$>");
+        while (true) {
+            updatePrompt();
             input = controller.getUserInput();
             console.print("User said: " + input);
 
             //check cd command
-            if (input.substring(0, 3).equals("cd ")){
+            if (input.length() > 4 && input.substring(0, 3).equals("cd ")) {
                 command.cd(input);
+            } else if (input.length() > 8 && input.substring(0, 7).equals("prompt ")) {
+                command.prompt(input);
             } else {
-                switch (input){
-
-                    case "dir":{
+                switch (input) {
+                    case "dir": {
                         command.dir();
                         break;
                     }
 
-                    case "prompt":{
+                    case "tree": {
                         //todo
                         break;
                     }
 
-                    case "tree":{
+                    case "statistics": {
                         //todo
                         break;
                     }
 
-                    case "statistics":{
-                        //todo
-                        break;
-                    }
-
-                    case "exit":{
+                    case "exit": {
                         command.exit();
                     }
 
@@ -75,9 +72,19 @@ public class ShellProgram {
                         break;
                 }
             }
-
-
         }
+    }
+
+    protected void updatePrompt(){
+        if (isIsPromptDirectory()){
+            prompt = getDirectory();
+        }
+        console.print(getPrompt() + ">");
+    }
+
+    protected void promptReset(){
+        setPrompt("$");
+        setIsPromptDirectory(false);
     }
 
     //getting our directory list
@@ -122,6 +129,15 @@ public class ShellProgram {
     public static void setCurrentDirectory(File currentDirectory) {
         ShellProgram.currentDirectory = currentDirectory;
     }
+
+    public static String getPrompt() {
+        return prompt;
+    }
+
+    public static void setPrompt(String prompt) {
+        ShellProgram.prompt = prompt;
+    }
+
     public static boolean isIsPromptDirectory() {
         return isPromptDirectory;
     }
@@ -129,7 +145,5 @@ public class ShellProgram {
     public static void setIsPromptDirectory(boolean isPromptDirectory) {
         ShellProgram.isPromptDirectory = isPromptDirectory;
     }
-
-
 
 }
