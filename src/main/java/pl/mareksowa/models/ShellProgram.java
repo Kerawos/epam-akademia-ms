@@ -9,20 +9,24 @@ import java.util.List;
 
 public class ShellProgram {
 
+    /*
+    task:
+    get rid of statics here
+     */
+
     //declarations
     private SimpleConsole console;
     private UserController controller;
     private ShellCommand command;
     private String input;
     private List<String> listOfDir;
-    private static String prompt;
-    private static boolean isPromptDirectory;
+    private String prompt = "$";
+    private boolean isPromptDirectory;
 
-    private static String directory;
-    private static File currentDirectory;
-    private static int statCdSuccess, statCdFail, statTreeSuccess, statTreeFail, statDirSuccess, statDirFail;
-    private static int statPromptSuccess, statPromptFail, statStatisticsSuccess, statStatisticsFail;
-
+    private String directory;
+    private File currentDirectory;
+    private int statCdSuccess, statCdFail, statTreeSuccess, statTreeFail, statDirSuccess, statDirFail;
+    private int statPromptSuccess, statPromptFail, statStatisticsSuccess, statStatisticsFail;
 
     //main program
     public void startShellProgram(){
@@ -35,7 +39,6 @@ public class ShellProgram {
         setCurrentDirectory(new File(getDirectory()));
         setPrompt("$");
         setIsPromptDirectory(false);
-
         //main loop
         while (true) {
             updatePrompt();
@@ -83,6 +86,9 @@ public class ShellProgram {
 
     protected void promptReset(){
         setPrompt("$");
+        System.out.println("reset uruchomiony " + getPrompt());
+        setPrompt("asdfsfsdfasdfa");
+        System.out.println("reset uruchomiony " + getPrompt());
         setIsPromptDirectory(false);
     }
 
@@ -110,115 +116,117 @@ public class ShellProgram {
     }
 
     //getters and setters
-    public static String getDirectory() {
-        return directory;
-    }
 
-    public static void setDirectory(String directory) {
-        ShellProgram.directory = directory;
-    }
 
-    public static File getCurrentDirectory() {
-        return currentDirectory;
-    }
-
-    public static void setCurrentDirectory(File currentDirectory) {
-        ShellProgram.currentDirectory = currentDirectory;
-    }
-
-    public static String getPrompt() {
-        return prompt;
-    }
-
-    public static void setPrompt(String prompt) {
-        ShellProgram.prompt = prompt;
-    }
-
-    public static boolean isIsPromptDirectory() {
+    public boolean isIsPromptDirectory() {
         return isPromptDirectory;
     }
 
-    public static void setIsPromptDirectory(boolean isPromptDirectory) {
-        ShellProgram.isPromptDirectory = isPromptDirectory;
+    public void setIsPromptDirectory(boolean promptDirectory) {
+        isPromptDirectory = promptDirectory;
     }
 
-    public static int getStatCdSuccess() {
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
+    }
+
+    public String getDirectory() {
+        return directory;
+    }
+
+    public void setDirectory(String directory) {
+        this.directory = directory;
+    }
+
+    public File getCurrentDirectory() {
+        return currentDirectory;
+    }
+
+    public void setCurrentDirectory(File currentDirectory) {
+        this.currentDirectory = currentDirectory;
+    }
+
+    public int getStatCdSuccess() {
         return statCdSuccess;
     }
 
-    public static void setStatCdSuccess(int statCdSuccess) {
-        ShellProgram.statCdSuccess = statCdSuccess;
+    public void setStatCdSuccess(int statCdSuccess) {
+        this.statCdSuccess = statCdSuccess;
     }
 
-    public static int getStatCdFail() {
+    public int getStatCdFail() {
         return statCdFail;
     }
 
-    public static void setStatCdFail(int statCdFail) {
-        ShellProgram.statCdFail = statCdFail;
+    public void setStatCdFail(int statCdFail) {
+        this.statCdFail = statCdFail;
     }
 
-    public static int getStatTreeSuccess() {
+    public int getStatTreeSuccess() {
         return statTreeSuccess;
     }
 
-    public static void setStatTreeSuccess(int statTreeSuccess) {
-        ShellProgram.statTreeSuccess = statTreeSuccess;
+    public void setStatTreeSuccess(int statTreeSuccess) {
+        this.statTreeSuccess = statTreeSuccess;
     }
 
-    public static int getStatTreeFail() {
+    public int getStatTreeFail() {
         return statTreeFail;
     }
 
-    public static void setStatTreeFail(int statTreeFail) {
-        ShellProgram.statTreeFail = statTreeFail;
+    public void setStatTreeFail(int statTreeFail) {
+        this.statTreeFail = statTreeFail;
     }
 
-    public static int getStatDirSuccess() {
+    public int getStatDirSuccess() {
         return statDirSuccess;
     }
 
-    public static void setStatDirSuccess(int statDirSucces) {
-        ShellProgram.statDirSuccess = statDirSucces;
+    public void setStatDirSuccess(int statDirSuccess) {
+        this.statDirSuccess = statDirSuccess;
     }
 
-    public static int getStatDirFail() {
+    public int getStatDirFail() {
         return statDirFail;
     }
 
-    public static void setStatDirFail(int statDirFail) {
-        ShellProgram.statDirFail = statDirFail;
+    public void setStatDirFail(int statDirFail) {
+        this.statDirFail = statDirFail;
     }
 
-    public static int getStatPromptSuccess() {
+    public int getStatPromptSuccess() {
         return statPromptSuccess;
     }
 
-    public static void setStatPromptSuccess(int statPromptSucces) {
-        ShellProgram.statPromptSuccess = statPromptSucces;
+    public void setStatPromptSuccess(int statPromptSuccess) {
+        this.statPromptSuccess = statPromptSuccess;
     }
 
-    public static int getStatPromptFail() {
+    public int getStatPromptFail() {
         return statPromptFail;
     }
 
-    public static void setStatPromptFail(int statPromptFail) {
-        ShellProgram.statPromptFail = statPromptFail;
+    public void setStatPromptFail(int statPromptFail) {
+        this.statPromptFail = statPromptFail;
     }
 
-    public static int getStatStatisticsSuccess() {
+    public int getStatStatisticsSuccess() {
         return statStatisticsSuccess;
     }
 
-    public static void setStatStatisticsSuccess(int statStatisticsSucces) {
-        ShellProgram.statStatisticsSuccess = statStatisticsSucces;
+    public void setStatStatisticsSuccess(int statStatisticsSuccess) {
+        this.statStatisticsSuccess = statStatisticsSuccess;
     }
 
-    public static int getStatStatisticsFail() {
+    public int getStatStatisticsFail() {
         return statStatisticsFail;
     }
 
-    public static void setStatStatisticsFail(int statStatisticsFail) {
-        ShellProgram.statStatisticsFail = statStatisticsFail;
+    public void setStatStatisticsFail(int statStatisticsFail) {
+        this.statStatisticsFail = statStatisticsFail;
     }
 }

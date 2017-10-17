@@ -6,14 +6,10 @@ import java.io.File;
 
 public class ShellCommand {
 
-    private SimpleConsole console;
-    private ShellProgram shellProgram;
+    private SimpleConsole console = new SimpleConsole();
+    private ShellProgram shellProgram = new ShellProgram();
     private int treeCounter;
 
-    public ShellCommand() {
-        console = new SimpleConsole();
-        shellProgram = new ShellProgram();
-    }
 
     protected void dir(){
         shellProgram.setCurrentDirectory(new File(shellProgram.getDirectory()));
@@ -58,7 +54,9 @@ public class ShellCommand {
             shellProgram.setIsPromptDirectory(true);
         } else {
             shellProgram.setIsPromptDirectory(false);
+            System.out.println("prompt from else is ; "+ shellProgram.getPrompt());
             shellProgram.setPrompt(input.substring(7, input.length()));
+            //shellProgram.prompt = input.substring(7, input.length())
         }
         shellProgram.setStatPromptSuccess(shellProgram.getStatPromptSuccess()+1);
     }
