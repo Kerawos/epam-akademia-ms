@@ -56,9 +56,7 @@ public class ShellProgram {
                         break;
                     }
                     case "tree": {
-                        //todo
                         tree(getCurrentDirectory());
-                        //System.out.println("not implemented yet");
                         break;
                     }
                     case "statistics": {
@@ -85,9 +83,6 @@ public class ShellProgram {
 
     protected void promptReset(){
         setPrompt("$");
-        System.out.println("reset uruchomiony " + getPrompt());
-        setPrompt("asdfsfsdfasdfa");
-        System.out.println("reset uruchomiony " + getPrompt());
         setIsPromptDirectory(false);
     }
 
@@ -115,7 +110,7 @@ public class ShellProgram {
     }
 
 
-
+    //commands
     protected void dir(){
         setCurrentDirectory(new File(getDirectory()));
         console.print("Content of " + getDirectory());
@@ -159,9 +154,7 @@ public class ShellProgram {
             setIsPromptDirectory(true);
         } else {
             setIsPromptDirectory(false);
-            System.out.println("prompt from else is ; "+ getPrompt());
             setPrompt(input.substring(7, input.length()));
-            //shellProgram.prompt = input.substring(7, input.length())
         }
         setStatPromptSuccess(getStatPromptSuccess()+1);
     }
