@@ -27,7 +27,7 @@ public class ShellCommand {
                 console.print("FILE     " + f.getName());
             }
         }
-        shellProgram.setStatDirSucces(shellProgram.getStatDirSucces()+1);
+        shellProgram.setStatDirSuccess(shellProgram.getStatDirSuccess()+1);
     }
 
     protected void cd(String input){
@@ -35,7 +35,7 @@ public class ShellCommand {
             if (shellProgram.getDirectory().contains("\\")){
                 shellProgram.setDirectory(shellProgram.getDirectory().substring(
                         0, shellProgram.getDirectory().lastIndexOf("\\")));
-                shellProgram.setStatCdSuccess(shellProgram.getStatDirSucces()+1);
+                shellProgram.setStatCdSuccess(shellProgram.getStatDirSuccess()+1);
             } else {
                 shellProgram.setStatCdFail(shellProgram.getStatDirFail()+1);
             }
@@ -43,7 +43,7 @@ public class ShellCommand {
             if (shellProgram.checkIfDirIsCorrected(input.substring(3, input.length()))) {
                 shellProgram.setDirectory(shellProgram.getDirectory() +
                         "\\" + input.substring(3, input.length()));
-                shellProgram.setStatCdSuccess(shellProgram.getStatDirSucces()+1);
+                shellProgram.setStatCdSuccess(shellProgram.getStatDirSuccess()+1);
             } else {
                 shellProgram.setStatCdFail(shellProgram.getStatDirFail()+1);
             }
@@ -60,7 +60,7 @@ public class ShellCommand {
             shellProgram.setIsPromptDirectory(false);
             shellProgram.setPrompt(input.substring(7, input.length()));
         }
-        shellProgram.setStatPromptSucces(shellProgram.getStatPromptSucces()+1);
+        shellProgram.setStatPromptSuccess(shellProgram.getStatPromptSuccess()+1);
     }
 
     protected void tree(File currentFolder){
@@ -93,12 +93,12 @@ public class ShellCommand {
 
     protected String statistics(){
         StringBuilder stringBuilder = new StringBuilder();
-        shellProgram.setStatStatisticsSucces(shellProgram.getStatPromptSucces()+1);
+        shellProgram.setStatStatisticsSuccess(shellProgram.getStatPromptSuccess()+1);
         stringBuilder.append("cd:"+shellProgram.getStatCdSuccess()+":"+shellProgram.getStatCdFail()+ "\n");
         stringBuilder.append("tree:"+shellProgram.getStatTreeSuccess()+":"+shellProgram.getStatTreeFail()+ "\n");
-        stringBuilder.append("dir:"+shellProgram.getStatDirSucces()+":"+shellProgram.getStatDirFail()+ "\n");
-        stringBuilder.append("prompt:"+shellProgram.getStatPromptSucces()+":"+shellProgram.getStatPromptFail()+ "\n");
-        stringBuilder.append("statistics:"+shellProgram.getStatStatisticsSucces()+":"+shellProgram.getStatStatisticsFail()+ "\n");
+        stringBuilder.append("dir:"+shellProgram.getStatDirSuccess()+":"+shellProgram.getStatDirFail()+ "\n");
+        stringBuilder.append("prompt:"+shellProgram.getStatPromptSuccess()+":"+shellProgram.getStatPromptFail()+ "\n");
+        stringBuilder.append("statistics:"+shellProgram.getStatStatisticsSuccess()+":"+shellProgram.getStatStatisticsFail()+ "\n");
         return stringBuilder.toString();
     }
 
