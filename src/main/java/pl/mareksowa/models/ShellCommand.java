@@ -28,6 +28,17 @@ public class ShellCommand {
         }
     }
 
+    protected void cd(String input){
+        if (input.substring(3,input.length()).equals("..")){
+            if (shellProgram.getDirectory().contains("\\")){
+                shellProgram.setDirectory(shellProgram.getDirectory().substring(
+                        0, shellProgram.getDirectory().lastIndexOf("\\")));
+            }
+        } else {
+//todo
+        }
+    }
+
     protected void exit(){
         console.print("Bye");
         System.exit(0);

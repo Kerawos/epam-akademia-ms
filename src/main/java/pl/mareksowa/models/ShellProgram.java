@@ -34,6 +34,11 @@ public class ShellProgram {
             input = controller.getUserInput();
             console.print("User said: " + input);
 
+            //check cd command
+            if (input.substring(0, 3).equals("cd ")){
+                command.cd(input);
+            }
+
             switch (input){
 
                 case "dir":{
