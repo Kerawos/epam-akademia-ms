@@ -9,17 +9,12 @@ import java.util.List;
 
 public class ShellProgram {
 
-    /*
-    task:
-    get rid of statics here
-     */
-
     //declarations
     private SimpleConsole console;
     private UserController controller;
     private String input;
     private List<String> listOfDir;
-    private String prompt = "$";
+    private String prompt;
     private boolean isPromptDirectory;
     private int treeCounter;
 
@@ -38,6 +33,7 @@ public class ShellProgram {
         setCurrentDirectory(new File(getDirectory()));
         setPrompt("$");
         setIsPromptDirectory(false);
+        
         //main loop
         while (true) {
             updatePrompt();
