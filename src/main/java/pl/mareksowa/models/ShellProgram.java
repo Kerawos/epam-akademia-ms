@@ -33,7 +33,7 @@ public class ShellProgram {
         setCurrentDirectory(new File(getDirectory()));
         setPrompt("$");
         setIsPromptDirectory(false);
-        
+
         //main loop
         while (true) {
             updatePrompt();
@@ -204,12 +204,7 @@ public class ShellProgram {
     }
 
 
-
-
-
     //getters and setters
-
-
     public boolean isIsPromptDirectory() {
         return isPromptDirectory;
     }
