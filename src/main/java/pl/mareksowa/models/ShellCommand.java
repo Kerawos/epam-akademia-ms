@@ -26,6 +26,7 @@ public class ShellCommand {
                 console.print("FILE     " + f.getName());
             }
         }
+        shellProgram.setStatDirSucces(shellProgram.getStatDirSucces()+1);
     }
 
     protected void cd(String input){
@@ -33,14 +34,21 @@ public class ShellCommand {
             if (shellProgram.getDirectory().contains("\\")){
                 shellProgram.setDirectory(shellProgram.getDirectory().substring(
                         0, shellProgram.getDirectory().lastIndexOf("\\")));
+                shellProgram.setStatCdSuccess(shellProgram.getStatDirSucces()+1);
+            } else {
+                shellProgram.setStatCdFail(shellProgram.getStatDirFail()+1);
             }
         } else {
             if (shellProgram.checkIfDirIsCorrected(input.substring(3, input.length()))) {
                 shellProgram.setDirectory(shellProgram.getDirectory() +
                         "\\" + input.substring(3, input.length()));
+                shellProgram.setStatCdSuccess(shellProgram.getStatDirSucces()+1);
+            } else {
+                shellProgram.setStatCdFail(shellProgram.getStatDirFail()+1);
             }
         }
     }
+
     protected void prompt(String input){
         if (input.substring(7, input.length()).equals("reset")){
             shellProgram.promptReset();
@@ -50,9 +58,16 @@ public class ShellCommand {
         } else {
             shellProgram.setPrompt(input.substring(7, input.length()));
         }
+        shellProgram.setStatPromptSucces(shellProgram.getStatPromptSucces()+1);
     }
 
+    protected void tree(){
+        //todo tree
+    }
+
+
     protected void statistics(){
+        shellProgram.setStatStatisticsSucces(shellProgram.getStatPromptSucces()+1);
         console.print("cd:"+shellProgram.getStatCdSuccess()+":"+shellProgram.getStatCdFail());
         console.print("tree:"+shellProgram.getStatTreeSuccess()+":"+shellProgram.getStatTreeFail());
         console.print("dir:"+shellProgram.getStatDirSucces()+":"+shellProgram.getStatDirFail());

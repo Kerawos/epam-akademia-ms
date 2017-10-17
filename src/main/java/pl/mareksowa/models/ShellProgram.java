@@ -111,10 +111,7 @@ public class ShellProgram {
         return false;
     }
 
-
-
-
-
+    //getters and setters
     public static String getDirectory() {
         return directory;
     }
