@@ -8,6 +8,7 @@ public class ShellCommand {
 
     private SimpleConsole console;
     private ShellProgram shellProgram;
+    private int treeCounter;
 
     public ShellCommand() {
         console = new SimpleConsole();
@@ -61,10 +62,34 @@ public class ShellCommand {
         shellProgram.setStatPromptSucces(shellProgram.getStatPromptSucces()+1);
     }
 
-    protected void tree(){
+    protected void tree(File currentFolder){
         //todo tree
+        treeCounter = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        showDirectoryTree(currentFolder, treeCounter, stringBuilder);
+        console.print(stringBuilder.toString());
     }
 
+    private void showDirectoryTree(File folder, int treeCounter,StringBuilder stringBuilder){
+        stringBuilder.append(getCounterString(treeCounter));
+        stringBuilder.append(folder.getName());
+        stringBuilder.append("\n");
+        for (File file : folder.listFiles()) {
+            if (file.isDirectory()) {
+                showDirectoryTree(file, treeCounter + 1, stringBuilder);
+            }
+        }
+    }
+
+    //back "-"
+    private String getCounterString(int treeCounter) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < treeCounter; i++) {
+            stringBuilder.append("-");
+        }
+        return stringBuilder.toString();
+    }
+    
 
     protected void statistics(){
         shellProgram.setStatStatisticsSucces(shellProgram.getStatPromptSucces()+1);

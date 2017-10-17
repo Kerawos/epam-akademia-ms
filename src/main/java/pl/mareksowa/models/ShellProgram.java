@@ -56,6 +56,8 @@ public class ShellProgram {
 
                     case "tree": {
                         //todo
+                        command.tree(getCurrentDirectory());
+                        //System.out.println("not implemented yet");
                         break;
                     }
 
