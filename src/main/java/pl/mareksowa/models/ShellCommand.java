@@ -35,7 +35,10 @@ public class ShellCommand {
                         0, shellProgram.getDirectory().lastIndexOf("\\")));
             }
         } else {
-//todo
+            if (shellProgram.checkIfDirIsCorrected(input.substring(3, input.length()))) {
+                shellProgram.setDirectory(shellProgram.getDirectory() +
+                        "\\" + input.substring(3, input.length()));
+            }
         }
     }
 
