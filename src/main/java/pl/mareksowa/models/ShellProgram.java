@@ -17,11 +17,11 @@ public class ShellProgram {
     //declarations
     private SimpleConsole console;
     private UserController controller;
-    private ShellCommand command;
     private String input;
     private List<String> listOfDir;
     private String prompt = "$";
     private boolean isPromptDirectory;
+    private int treeCounter;
 
     private String directory;
     private File currentDirectory;
@@ -34,7 +34,6 @@ public class ShellProgram {
         //initialization
         console = new SimpleConsole();
         controller = new UserController();
-        command = new ShellCommand();
         setDirectory(System.getProperty("user.dir"));
         setCurrentDirectory(new File(getDirectory()));
         setPrompt("$");
@@ -47,30 +46,30 @@ public class ShellProgram {
 
             //check cd command
             if (input.length() > 4 && input.substring(0, 3).equals("cd ")) {
-                command.cd(input);
+                cd(input);
             } else if (input.length() > 8 && input.substring(0, 7).equals("prompt ")) {
-                command.prompt(input);
+                prompt(input);
             } else {
                 switch (input) {
                     case "dir": {
-                        command.dir();
+                        dir();
                         break;
                     }
                     case "tree": {
                         //todo
-                        command.tree(getCurrentDirectory());
+                        tree(getCurrentDirectory());
                         //System.out.println("not implemented yet");
                         break;
                     }
                     case "statistics": {
-                        console.print(command.statistics());
+                        console.print(statistics());
                         break;
                     }
                     case "exit": {
-                        command.exit();
+                        exit();
                     }
                     default:
-                        command.unknown();
+                        unknown();
                         break;
                 }
             }
@@ -114,6 +113,110 @@ public class ShellProgram {
         }
         return false;
     }
+
+
+
+    protected void dir(){
+        setCurrentDirectory(new File(getDirectory()));
+        console.print("Content of " + getDirectory());
+        //creating files array
+        File[] filesList = getCurrentDirectory().listFiles();
+        for(File f : filesList){
+            if(f.isDirectory())
+                console.print("DIR      " + f.getName());
+            if(f.isFile()){
+                console.print("FILE     " + f.getName());
+            }
+        }
+        setStatDirSuccess(getStatDirSuccess()+1);
+    }
+
+    protected void cd(String input){
+        if (input.substring(3,input.length()).equals("..")){
+            if (getDirectory().contains("\\")){
+                setDirectory(getDirectory().substring(
+                        0, getDirectory().lastIndexOf("\\")));
+                setStatCdSuccess(getStatDirSuccess()+1);
+            } else {
+                setStatCdFail(getStatDirFail()+1);
+            }
+        } else {
+            if (checkIfDirIsCorrected(input.substring(3, input.length()))) {
+                setDirectory(getDirectory() +
+                        "\\" + input.substring(3, input.length()));
+                setStatCdSuccess(getStatDirSuccess()+1);
+            } else {
+                setStatCdFail(getStatDirFail()+1);
+            }
+        }
+    }
+
+    protected void prompt(String input){
+        if (input.substring(7, input.length()).equals("reset")){
+            promptReset();
+        } else if(input.substring(7, input.length()).equals("$cwd")){
+            //change boolean -> update prompt
+            setIsPromptDirectory(true);
+        } else {
+            setIsPromptDirectory(false);
+            System.out.println("prompt from else is ; "+ getPrompt());
+            setPrompt(input.substring(7, input.length()));
+            //shellProgram.prompt = input.substring(7, input.length())
+        }
+        setStatPromptSuccess(getStatPromptSuccess()+1);
+    }
+
+    protected void tree(File currentFolder){
+        //todo tree
+        treeCounter = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+        showDirectoryTree(currentFolder, treeCounter, stringBuilder);
+        console.print(stringBuilder.toString());
+    }
+
+    private void showDirectoryTree(File folder, int treeCounter,StringBuilder stringBuilder){
+        stringBuilder.append(getCounterString(treeCounter));
+        stringBuilder.append(folder.getName());
+        stringBuilder.append("\n");
+        for (File file : folder.listFiles()) {
+            if (file.isDirectory()) {
+                showDirectoryTree(file, treeCounter + 1, stringBuilder);
+            }
+        }
+    }
+
+    //back "-"
+    private String getCounterString(int treeCounter) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < treeCounter; i++) {
+            stringBuilder.append("-");
+        }
+        return stringBuilder.toString();
+    }
+
+    protected String statistics(){
+        StringBuilder stringBuilder = new StringBuilder();
+        setStatStatisticsSuccess(getStatPromptSuccess()+1);
+        stringBuilder.append("cd:"+getStatCdSuccess()+":"+getStatCdFail()+ "\n");
+        stringBuilder.append("tree:"+getStatTreeSuccess()+":"+getStatTreeFail()+ "\n");
+        stringBuilder.append("dir:"+getStatDirSuccess()+":"+getStatDirFail()+ "\n");
+        stringBuilder.append("prompt:"+getStatPromptSuccess()+":"+getStatPromptFail()+ "\n");
+        stringBuilder.append("statistics:"+getStatStatisticsSuccess()+":"+getStatStatisticsFail()+ "\n");
+        return stringBuilder.toString();
+    }
+
+    protected void exit(){
+        console.print("Bye");
+        System.exit(0);
+    }
+
+    protected void unknown(){
+        console.print("unknown command...");
+    }
+
+
+
+
 
     //getters and setters
 
