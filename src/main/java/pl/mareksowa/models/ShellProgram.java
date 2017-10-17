@@ -20,7 +20,8 @@ public class ShellProgram {
 
     private static String directory;
     private static File currentDirectory;
-
+    private static int statCdSuccess, statCdFail, statTreeSuccess, statTreeFail, statDirSucces, statDirFail;
+    private static int statPromptSucces, statPromptFail, statStatisticsSucces, statStatisticsFail;
 
 
     //main program
@@ -59,7 +60,7 @@ public class ShellProgram {
                     }
 
                     case "statistics": {
-                        //todo
+                        command.statistics();
                         break;
                     }
 
@@ -146,4 +147,83 @@ public class ShellProgram {
         ShellProgram.isPromptDirectory = isPromptDirectory;
     }
 
+    public static int getStatCdSuccess() {
+        return statCdSuccess;
+    }
+
+    public static void setStatCdSuccess(int statCdSuccess) {
+        ShellProgram.statCdSuccess = statCdSuccess;
+    }
+
+    public static int getStatCdFail() {
+        return statCdFail;
+    }
+
+    public static void setStatCdFail(int statCdFail) {
+        ShellProgram.statCdFail = statCdFail;
+    }
+
+    public static int getStatTreeSuccess() {
+        return statTreeSuccess;
+    }
+
+    public static void setStatTreeSuccess(int statTreeSuccess) {
+        ShellProgram.statTreeSuccess = statTreeSuccess;
+    }
+
+    public static int getStatTreeFail() {
+        return statTreeFail;
+    }
+
+    public static void setStatTreeFail(int statTreeFail) {
+        ShellProgram.statTreeFail = statTreeFail;
+    }
+
+    public static int getStatDirSucces() {
+        return statDirSucces;
+    }
+
+    public static void setStatDirSucces(int statDirSucces) {
+        ShellProgram.statDirSucces = statDirSucces;
+    }
+
+    public static int getStatDirFail() {
+        return statDirFail;
+    }
+
+    public static void setStatDirFail(int statDirFail) {
+        ShellProgram.statDirFail = statDirFail;
+    }
+
+    public static int getStatPromptSucces() {
+        return statPromptSucces;
+    }
+
+    public static void setStatPromptSucces(int statPromptSucces) {
+        ShellProgram.statPromptSucces = statPromptSucces;
+    }
+
+    public static int getStatPromptFail() {
+        return statPromptFail;
+    }
+
+    public static void setStatPromptFail(int statPromptFail) {
+        ShellProgram.statPromptFail = statPromptFail;
+    }
+
+    public static int getStatStatisticsSucces() {
+        return statStatisticsSucces;
+    }
+
+    public static void setStatStatisticsSucces(int statStatisticsSucces) {
+        ShellProgram.statStatisticsSucces = statStatisticsSucces;
+    }
+
+    public static int getStatStatisticsFail() {
+        return statStatisticsFail;
+    }
+
+    public static void setStatStatisticsFail(int statStatisticsFail) {
+        ShellProgram.statStatisticsFail = statStatisticsFail;
+    }
 }

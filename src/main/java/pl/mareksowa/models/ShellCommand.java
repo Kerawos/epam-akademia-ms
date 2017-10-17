@@ -52,6 +52,14 @@ public class ShellCommand {
         }
     }
 
+    protected void statistics(){
+        console.print("cd:"+shellProgram.getStatCdSuccess()+":"+shellProgram.getStatCdFail());
+        console.print("tree:"+shellProgram.getStatTreeSuccess()+":"+shellProgram.getStatTreeFail());
+        console.print("dir:"+shellProgram.getStatDirSucces()+":"+shellProgram.getStatDirFail());
+        console.print("prompt:"+shellProgram.getStatPromptSucces()+":"+shellProgram.getStatPromptFail());
+        console.print("statistics:"+shellProgram.getStatStatisticsSucces()+":"+shellProgram.getStatStatisticsFail());
+    }
+
 
     protected void exit(){
         console.print("Bye");
