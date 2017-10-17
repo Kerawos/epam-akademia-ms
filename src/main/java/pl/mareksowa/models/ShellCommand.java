@@ -91,7 +91,6 @@ public class ShellCommand {
         return stringBuilder.toString();
     }
 
-
     protected String statistics(){
         StringBuilder stringBuilder = new StringBuilder();
         shellProgram.setStatStatisticsSucces(shellProgram.getStatPromptSucces()+1);
@@ -102,7 +101,6 @@ public class ShellCommand {
         stringBuilder.append("statistics:"+shellProgram.getStatStatisticsSucces()+":"+shellProgram.getStatStatisticsFail()+ "\n");
         return stringBuilder.toString();
     }
-
 
     protected void exit(){
         console.print("Bye");

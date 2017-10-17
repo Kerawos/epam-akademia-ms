@@ -3,7 +3,6 @@ package pl.mareksowa.models;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import pl.mareksowa.controllers.UserController;
 
 import static org.junit.Assert.*;
 
@@ -40,9 +39,4 @@ public class ShellCommandTest {
         assertEquals(false, shellProgram.isIsPromptDirectory());
         assertEquals("$", shellProgram.getPrompt());
     }
-
-
-
-
-
 }

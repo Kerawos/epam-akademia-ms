@@ -53,23 +53,19 @@ public class ShellProgram {
                         command.dir();
                         break;
                     }
-
                     case "tree": {
                         //todo
                         command.tree(getCurrentDirectory());
                         //System.out.println("not implemented yet");
                         break;
                     }
-
                     case "statistics": {
                         console.print(command.statistics());
                         break;
                     }
-
                     case "exit": {
                         command.exit();
                     }
-
                     default:
                         command.unknown();
                         break;
