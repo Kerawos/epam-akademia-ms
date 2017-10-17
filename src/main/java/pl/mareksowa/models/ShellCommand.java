@@ -57,6 +57,7 @@ public class ShellCommand {
             //change boolean -> update prompt
             shellProgram.setIsPromptDirectory(true);
         } else {
+            shellProgram.setIsPromptDirectory(false);
             shellProgram.setPrompt(input.substring(7, input.length()));
         }
         shellProgram.setStatPromptSucces(shellProgram.getStatPromptSucces()+1);
@@ -89,7 +90,7 @@ public class ShellCommand {
         }
         return stringBuilder.toString();
     }
-    
+
 
     protected void statistics(){
         shellProgram.setStatStatisticsSucces(shellProgram.getStatPromptSucces()+1);

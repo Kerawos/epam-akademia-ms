@@ -80,7 +80,7 @@ public class ShellProgram {
 
     protected void updatePrompt(){
         if (isIsPromptDirectory()){
-            prompt = getDirectory();
+            setPrompt(getDirectory());
         }
         console.print(getPrompt() + ">");
     }
